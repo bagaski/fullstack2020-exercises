@@ -3,18 +3,16 @@ import ReactDOM from 'react-dom'
 
 const Button = ({ handleClick, text }) => <button onClick={handleClick}>{text}</button>
 
-const Statistics = (props) => {
+const Statistic = (props) => {
 
     return (
 
         <div>
-            <h1>Statistics</h1>
-            <p>Voted <i>Good</i>: {props.good}</p>
-            <p>Voted <i>Neutral</i>: {props.neutral}</p>
-            <p>Voted <i>Bad</i>: {props.bad}</p>
-            <p>Total Votes: {props.all}</p>
-            <p>Positive: {props.good === 0 ? 0 : props.positive}%</p>
-            <p>Average: {props.good === 0 ? 0 : props.average}</p>
+            {
+                <div>
+                    <p>statistic for {props.text}: {props.value}</p>
+                </div>
+            }
         </div>
     )
 }
@@ -30,8 +28,8 @@ const App = () => {
     const badHandler = () => { setBad(bad + 1) };
 
     const all = good + neutral + bad;
-    const positive = parseFloat(good * 100 / all).toFixed(2); //only show 2 first decimals
-    const average = parseFloat((good - bad) / all).toFixed(2);//only show 2 first decimals
+    const positive = good === 0 ? 0 : parseFloat(good * 100 / all).toFixed(2); //only show 2 first decimals
+    const average = good === 0 ? 0 : parseFloat((good - bad) / all).toFixed(2);//only show 2 first decimals
 
     return (
         <div>
@@ -39,7 +37,15 @@ const App = () => {
             <Button handleClick={goodHandler} text='good' />
             <Button handleClick={neuHandler} text='neutral' />
             <Button handleClick={badHandler} text='bad' />
-            <Statistics good={good} neutral={neutral} bad={bad} all={all} average={average} positive={positive} />
+            <h1>Various Statistics</h1>
+            {(all === 0) ?
+                <p>no feedback yet</p> : <div>
+                    <Statistic text='good' value={good} />
+                    <Statistic text='neutral' value={neutral} />
+                    <Statistic text='bad' value={bad} />
+                    <Statistic text='positive' value={positive} />
+                    <Statistic text='average' value={average} />
+                </div>}
         </div>
     )
 }
