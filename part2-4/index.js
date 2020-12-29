@@ -20,7 +20,7 @@ const Parts = ({ course }) => {
 const Content = ({ course }) => {
     return (
         <div>
-            <Parts course={course} />
+            <Parts key={course.part.id} course={course} />
         </div>
     )
 }
