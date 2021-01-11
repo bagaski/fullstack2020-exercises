@@ -13,8 +13,14 @@ const update = (id, newObject) => {
     return axios.put(`${baseUrl}/${id}`, newObject)
 }
 
+const delete = async (id, loc) => {
+    const { data } = await axios.delete(`${baseUrl}/${loc}/${id}`);
+    return data;
+}
+
 export default {
     getAll: getAll,
     create: create,
-    update: update
+    update: update,  
+    delete: delete      
 }

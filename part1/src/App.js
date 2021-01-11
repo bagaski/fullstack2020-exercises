@@ -31,17 +31,13 @@ const App = () => {
             })
         }, [])
         
-        
-    
-    
     const addPerson = (event) => {
         event.preventDefault()
         setNewPerson(event.target.value)
         setNewNumber(event.target.value)
         const personsObject = {
             name: newPerson,
-            number: newNumber,
-            
+            number: newNumber,   
         }
 
     personService
@@ -61,6 +57,14 @@ const App = () => {
         
 
     }
+
+    const deletePerson = (event) => {
+
+        if (window.confirm("Do you really want to delete it?")) {
+            window.open("exit.html", "Thanks for Visiting!");
+
+            event.target.props.delete
+    } 
 
     const handlePersonChange = (event) => {
         setNewPerson(event.target.value)
@@ -83,7 +87,7 @@ const App = () => {
             <h2>Phone Numbers</h2>
             <ul style={noBullets}>
                 {persons.map(person => <li key={person.id}><i>{person.name} </i>
-                    {person.number}</li>)}
+                    {person.number}<button onClick={deletePerson}>delete</button></li>)}
             </ul>
         </div>
     )
