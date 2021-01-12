@@ -53,8 +53,6 @@ const App = () => {
         setNewNumber('');
 
         console.log(newPerson, persons)
-    
-        
 
     }
 
@@ -63,9 +61,9 @@ const App = () => {
         if (window.confirm("Do you really want to delete it?")) {
             window.open("exit.html", "Thanks for Visiting!");
 
-            event.target.props.delete
+            persons.deletes(event.target.value)
     } 
-
+    }
     const handlePersonChange = (event) => {
         setNewPerson(event.target.value)
     }
