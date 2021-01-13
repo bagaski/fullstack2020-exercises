@@ -61,7 +61,9 @@ const App = () => {
         if (window.confirm("Do you really want to delete it?")) {
             window.open("exit.html", "Thanks for Visiting!");
 
-            persons.deletes(event.target.value)
+            persons.del(event.target.value)
+            .then(()=>true)
+            console.log('YIORGOOOS>>>>')
     } 
     }
     const handlePersonChange = (event) => {
