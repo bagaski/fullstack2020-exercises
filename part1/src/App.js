@@ -59,13 +59,14 @@ const App = () => {
     const deletePerson = (event) => {
 
         if (window.confirm("Do you really want to delete it?")) {
-            window.open("exit.html", "Thanks for Visiting!");
+           window.open("exit.html", "Thanks for Visiting!");
 
-            persons.del(event.target.value)
-            .then(()=>true)
-            console.log('YIORGOOOS>>>>')
-    } 
-    }
+            personService
+            .delete(event.target.value)
+            .then(response => {setPersons.del(event.target.value)})
+            console.log('YIORG', event.target.value)
+        }
+    }   
     const handlePersonChange = (event) => {
         setNewPerson(event.target.value)
     }
@@ -83,11 +84,20 @@ const App = () => {
     return (
         <div>
             <h2>Phonebook</h2>
-            <Form addperson={addPerson} newperson={newPerson} newnumber={newNumber} changeperson={handlePersonChange} changenumber={handleNumberChange} />
+            <Form 
+            addperson={addPerson} 
+            newperson={newPerson} 
+            newnumber={newNumber} 
+            changeperson={handlePersonChange} 
+            changenumber={handleNumberChange} 
+            />
             <h2>Phone Numbers</h2>
             <ul style={noBullets}>
-                {persons.map(person => <li key={person.id}><i>{person.name} </i>
-                    {person.number}<button onClick={deletePerson}>delete</button></li>)}
+                {persons.map(person => <li 
+                key={person.id}>
+                    <i>{person.name} </i>
+                    {person.number}
+                    <button onClick={deletePerson}>delete</button></li>)}
             </ul>
         </div>
     )

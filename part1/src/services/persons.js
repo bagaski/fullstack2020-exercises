@@ -13,8 +13,8 @@ const update = (id, newObject) => {
     return axios.put(`${baseUrl}/${id}`, newObject)
 }
 
-const del = async (id, loc) => {
-    const { data } = await axios.delete(`${baseUrl}/${loc}/${id}`);
+const del = async (id) => {
+    const { data } = await axios.delete(`${baseUrl}/${id}`);
     return data;
 }
 
