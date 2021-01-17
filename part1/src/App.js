@@ -35,6 +35,7 @@ const App = () => {
         event.preventDefault()
         setNewPerson(event.target.value)
         setNewNumber(event.target.value)
+        
         const personsObject = {
             name: newPerson,
             number: newNumber,   
@@ -57,15 +58,18 @@ const App = () => {
     }
 
     const deletePerson = (event) => {
-
+        event.preventDefault()
         if (window.confirm("Do you really want to delete it?")) {
            window.open("exit.html", "Thanks for Visiting!");
+        }
 
             personService
-            .delete(event.target.value)
-            .then(response => {setPersons.del(event.target.value)})
-            console.log('YIORG', event.target.value)
-        }
+            .delete(event)
+            .then(response => { 
+                setPersons(persons.del(response.data))
+            })
+        console.log('YIORG', event.target.value)
+        
     }   
     const handlePersonChange = (event) => {
         setNewPerson(event.target.value)
@@ -97,7 +101,7 @@ const App = () => {
                 key={person.id}>
                     <i>{person.name} </i>
                     {person.number}
-                    <button onClick={deletePerson}>delete</button></li>)}
+                    <button type="submit" onClick={deletePerson}>delete</button></li>)}
             </ul>
         </div>
     )

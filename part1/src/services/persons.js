@@ -14,8 +14,8 @@ const update = (id, newObject) => {
 }
 
 const del = async (id) => {
-    const { data } = await axios.delete(`${baseUrl}/${id}`);
-    return data;
+    return axios.delete(`${baseUrl}/${id}`);
+    
 }
 
 export default {
@@ -24,3 +24,5 @@ export default {
     update: update,  
     delete: del   
 }
+
+
