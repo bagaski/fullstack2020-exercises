@@ -18,28 +18,11 @@ const Form = (props) => {
 
 }
 
-
-const Notification = (props) => {
-    
-    const success = {
-        backgroundColor: 'green',
-        padding: '4px',
-        color: 'white',
-        display: 'inline'
-    }
-
-    return (
-        <div style={success}>
-            successfully added {props.successname}
-        </div>
-    )
-}
-
 const App = () => {
     const [persons, setPersons] = useState([])
     const [newPerson, setNewPerson] = useState('type a name...')
     const [newNumber, setNewNumber] = useState('type phonenumber...')
-    
+
     useEffect(() => {
         personService
             .getAll()
@@ -67,14 +50,13 @@ const App = () => {
 
         //setPersons(persons.concat(personsObject))
 
-        persons.some(person => person.name === newPerson) ? alert(`${newPerson} is already added to phonebook`) : setNewPerson('') ;
+        persons.some(person => person.name === newPerson) ? alert(`${newPerson} is already added to phonebook`) : setNewPerson('');
         setNewNumber('');
 
-        
         console.log(newPerson, persons)
 
     }
-    
+
     const deletePerson = (event) => {
         event.preventDefault()
         if (window.confirm("Do you really want to delete it?")) {
@@ -82,7 +64,7 @@ const App = () => {
         }
 
             personService
-            .delete()
+            .delete(event)
             .then(response => { 
                 setPersons(persons.del(response.data))
             })
@@ -103,19 +85,17 @@ const App = () => {
         margin: '0px'
     }
 
-    
     return (
         <div>
             <h2>Phonebook</h2>
             <Form 
-                addperson={addPerson} 
-                newperson={newPerson} 
-                newnumber={newNumber} 
-                changeperson={handlePersonChange} 
-                changenumber={handleNumberChange} 
+            addperson={addPerson} 
+            newperson={newPerson} 
+            newnumber={newNumber} 
+            changeperson={handlePersonChange} 
+            changenumber={handleNumberChange} 
             />
             <h2>Phone Numbers</h2>
-            <Notification />
             <ul style={noBullets}>
                 {persons.map(person => <li 
                 key={person.id}>
