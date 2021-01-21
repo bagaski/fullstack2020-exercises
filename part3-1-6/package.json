@@ -1,0 +1,16 @@
+{
+  "name": "part3",
+  "version": "1.0.0",
+  "description": "Part 3 exercises",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "backend",
+    "server",
+    "express"
+  ],
+  "author": "Yiorgos Bagakis",
+  "license": "MIT"
+}
